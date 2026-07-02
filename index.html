@@ -4,20 +4,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>初めてのウェブページ</title>
+  <title>花畑の朝</title>
 
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
     
-  </style>
+    .image_container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: block;
+      overflow: hidden;
+    }
 
+    .base-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .text_box {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      background-color: rgba(255, 255, 255, 0.4);
+      padding: 20px 30px; 
+      word-break: keep-all;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .text_line {
+      color: #c71585;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+
+    .butterfly {
+      position: absolute;
+      width: 90px;
+      height: auto;
+      transition: left 0.8s ease-out, top 0.8s ease-out;
+      z-index: 5;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
-  <p>これは私が初めて作ったウェブページです。</p>
+  <div class="image_container">
+    <img src="./素材/bg0.png" alt="花畑の背景" class="base-img">
+
+    <img src="./素材/butterfly.gif" class="butterfly" style="left: 60%; top: 75%;">
+    <img src="./素材/butterfly.gif" class="butterfly" style="left: 40%; top: 70%;">
+    <img src="./素材/butterfly.gif" class="butterfly" style="left: 25%; top: 75%;">
+
+    <div class="text_box">
+      <p class="text_line">ぽかぽか陽気の穏やかな朝<br>花畑では、蝶々がのんびり飛んでいます</p>
+    </div>
+  </div>
+
+  <script>
+    const butterflies = document.querySelectorAll('.butterfly');
+    butterflies.forEach((bf) => {
+      bf.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const randomX = Math.floor(Math.random() * 90);
+        const randomY = Math.floor(Math.random() * 90);
+        
+        bf.style.left = `${randomX}%`;
+        bf.style.top = `${randomY}%`;
+      });
+    });
+  </script>
 </body>
-
-    <script>
-        <!-- ここはjava -->
-    </script>
-
 </html>
